@@ -1,0 +1,24 @@
+<?php
+
+/**
+ * @file
+ * Contains service_club_tmp.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function service_club_tmp_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the service_club_tmp module.
+    case 'help.page.service_club_tmp':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Contains Event Questionnaire and Traffic Management Plan Tools') . '</p>';
+      return $output;
+
+    default:
+  }
+}

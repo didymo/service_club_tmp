@@ -1,0 +1,14 @@
+{
+  "name": "drupal/service_club_tmp",
+  "type": "drupal-module",
+  "description": "Contains Event Questionnaire and Traffic Management Plan Tools",
+  "keywords": ["Drupal"],
+  "license": "GPL-2.0+",
+  "homepage": "https://www.drupal.org/project/service_club_tmp",
+  "minimum-stability": "dev",
+  "support": {
+    "issues": "https://www.drupal.org/project/issues/service_club_tmp",
+    "source": "http://cgit.drupalcode.org/service_club_tmp"
+  },
+  "require": { }
+}
