@@ -1,0 +1,17 @@
+entity.question.add_form:
+  route_name: entity.question.add_form
+  title: 'Add Question'
+  appears_on:
+    - entity.question.collection
+
+entity.event_class.add_form:
+  route_name: entity.event_class.add_form
+  title: 'Add Event class'
+  appears_on:
+    - entity.event_class.collection
+
+entity.questionnaire.add_form:
+  route_name: entity.questionnaire.add_form
+  title: 'Add Questionnaire'
+  appears_on:
+    - entity.questionnaire.collection

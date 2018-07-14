@@ -1,0 +1,38 @@
+
+# Admin config category
+tmp.admin_index:
+  title: 'Traffic Management Plan'
+  parent: system.admin_config
+  route_name: tmp.admin_index
+
+# Question menu items definition
+entity.question.collection:
+  title: 'Question'
+  route_name: entity.question.collection
+  description: 'Configure the list of questions asked by the questionnaire to determine the class of an event'
+  parent: tmp.admin_index
+  weight: 98
+
+
+# Event class menu items definition
+entity.event_class.collection:
+  title: 'Event class'
+  route_name: entity.event_class.collection
+  description: 'Configure the list of event classes that an event can be'
+  parent: tmp.admin_index
+  weight: 99
+
+
+# Questionnaire menu items definition
+entity.questionnaire.collection:
+  title: 'Questionnaire list'
+  route_name: entity.questionnaire.collection
+  description: 'List Questionnaire entities'
+  parent: system.admin_structure
+  weight: 100
+
+questionnaire.admin.structure.settings:
+  title: 'Questionnaire settings'
+  description: 'Configure Questionnaire entities'
+  route_name: questionnaire.settings
+  parent: system.admin_structure
