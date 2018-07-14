@@ -1,0 +1,30 @@
+add questionnaire entities:
+  title: 'Create new Questionnaire entities'
+
+administer questionnaire entities:
+  title: 'Administer Questionnaire entities'
+  description: 'Allow to access the administration form to configure Questionnaire entities.'
+  restrict access: true
+
+delete questionnaire entities:
+  title: 'Delete Questionnaire entities'
+
+edit questionnaire entities:
+  title: 'Edit Questionnaire entities'
+
+view published questionnaire entities:
+  title: 'View published Questionnaire entities'
+
+view unpublished questionnaire entities:
+  title: 'View unpublished Questionnaire entities'
+
+view all questionnaire revisions:
+  title: 'View all Questionnaire revisions'
+
+revert all questionnaire revisions:
+  title: 'Revert all Questionnaire revisions'
+  description: 'Role requires permission <em>view Questionnaire revisions</em> and <em>edit rights</em> for questionnaire entities in question or <em>administer questionnaire entities</em>.'
+
+delete all questionnaire revisions:
+  title: 'Delete all revisions'
+  description: 'Role requires permission to <em>view Questionnaire revisions</em> and <em>delete rights</em> for questionnaire entities in question or <em>administer questionnaire entities</em>.'
