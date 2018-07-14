@@ -1,0 +1,15 @@
+service_club_tmp.question.*:
+  type: config_entity
+  label: 'Question config'
+  mapping:
+    id:
+      type: string
+      label: 'ID'
+    label:
+      type: label
+      label: 'Label'
+    uuid:
+      type: string
+    weight:
+      type: integer
+      label: 'Weight'

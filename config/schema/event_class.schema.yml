@@ -1,0 +1,18 @@
+service_club_tmp.event_class.*:
+  type: config_entity
+  label: 'Event class config'
+  mapping:
+    id:
+      type: string
+      label: 'ID'
+    label:
+      type: label
+      label: 'Label'
+    uuid:
+      type: string
+    weight:
+      type: integer
+      label: 'Weight'
+    description:
+      type: text
+      label: 'Description'
