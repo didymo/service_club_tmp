@@ -1,5 +1,6 @@
-name: 'service club tmp'
+name: 'Service Club TMP'
 type: module
 description: 'Contains Event Questionnaire and Traffic Management Plan Tools'
 core: 8.x
 package: 'Service Club'
+configure: tmp.admin_index
