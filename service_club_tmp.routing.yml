@@ -1,0 +1,7 @@
+tmp.admin_index:
+  path: '/admin/config/tmp'
+  defaults:
+    _controller: '\Drupal\system\Controller\SystemController::systemAdminMenuBlockPage'
+    _title: 'Traffic Management Plan'
+  requirements:
+    _permission: 'access administration pages'
