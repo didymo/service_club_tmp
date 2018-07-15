@@ -111,8 +111,8 @@ class Questionnaire extends RevisionableContentEntityBase implements Questionnai
       }
     }
 
-    // If no revision author has been set explicitly, make the questionnaire owner the
-    // revision author.
+    // If no revision author has been set explicitly, make the questionnaire
+    // owner the revision author.
     if (!$this->getRevisionUser()) {
       $this->setRevisionUserId($this->getOwnerId());
     }
@@ -270,6 +270,55 @@ class Questionnaire extends RevisionableContentEntityBase implements Questionnai
       ->setReadOnly(TRUE)
       ->setRevisionable(TRUE)
       ->setTranslatable(TRUE);
+
+    $fields['questions'] = BaseFieldDefinition::create('entity_reference')
+      ->setLabel(t('Questions'))
+      ->setDescription(t('The questions completed by the user.'))
+      ->setRevisionable(TRUE)
+      ->setSetting('target_type', 'question')
+      ->setSetting('handler', 'default')
+      ->setCardinality(FieldStorageDefinitionInterface::CARDINALITY_UNLIMITED)
+      ->setTranslatable(TRUE)
+      ->setDisplayOptions('view', [
+        'type' => 'string_textfield',
+        'weight' => 6,
+      ])
+      ->setDisplayOptions('form', [
+        'type' => 'entity_reference_autocomplete',
+        'weight' => 6,
+        'settings' => [
+          'match_operator' => 'CONTAINS',
+          'size' => '60',
+          'autocomplete_type' => 'tags',
+          'placeholder' => '',
+        ],
+      ])
+      ->setDisplayConfigurable('form', TRUE)
+      ->setDisplayConfigurable('view', TRUE);
+
+    $fields['event_class'] = BaseFieldDefinition::create('entity_reference')
+      ->setLabel(t('Event Class'))
+      ->setDescription(t('The event class that the system determines the event to be.'))
+      ->setRevisionable(TRUE)
+      ->setSetting('target_type', 'event_class')
+      ->setSetting('handler', 'default')
+      ->setTranslatable(TRUE)
+      ->setDisplayOptions('view', [
+        'type' => 'string_textfield',
+        'weight' => 7,
+      ])
+      ->setDisplayOptions('form', [
+        'type' => 'entity_reference_autocomplete',
+        'weight' => 7,
+        'settings' => [
+          'match_operator' => 'CONTAINS',
+          'size' => '60',
+          'autocomplete_type' => 'tags',
+          'placeholder' => '',
+        ],
+      ])
+      ->setDisplayConfigurable('form', TRUE)
+      ->setDisplayConfigurable('view', TRUE);
 
     return $fields;
   }
