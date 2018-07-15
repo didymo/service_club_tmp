@@ -1,0 +1,18 @@
+id: questionnaire_results
+plugin_id: questionnaire_results
+granularity: resource
+dependencies:
+  module:
+    - basic_auth
+    - hal
+    - serialization
+    - service_club_tmp
+configuration:
+  methods:
+    - GET
+  formats:
+    - hal_json
+    - json
+    - xml
+  authentication:
+    - basic_auth

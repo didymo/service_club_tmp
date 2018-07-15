@@ -1,0 +1,18 @@
+id: questionnaire_submit
+plugin_id: questionnaire_submit
+granularity: resource
+dependencies:
+  module:
+    - basic_auth
+    - hal
+    - serialization
+    - service_club_tmp
+configuration:
+  methods:
+    - POST
+  formats:
+    - hal_json
+    - json
+    - xml
+  authentication:
+    - basic_auth
