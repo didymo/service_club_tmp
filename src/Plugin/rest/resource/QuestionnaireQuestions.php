@@ -9,6 +9,7 @@ use Drupal\rest\ResourceResponse;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
+use Drupal\service_club_tmp\Entity\Question;
 
 /**
  * Provides a resource to get view modes by entity and bundle.
@@ -92,7 +93,12 @@ class QuestionnaireQuestions extends ResourceBase {
       throw new AccessDeniedHttpException();
     }
 
-    $response = [ 'message' => 'This is where the question list should be returned'];
+    $questions = Question::loadMultiple();
+    $response = [];
+
+    foreach ($questions as $question) {
+      $response = $response + [$question->getId() => $question->getLabel()];
+    }
 
     return new ResourceResponse($response, 200);
   }
