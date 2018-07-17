@@ -49,11 +49,31 @@ class Question extends ConfigEntityBase implements QuestionInterface {
   protected $id;
 
   /**
+   * Returns the Id of the question.
+   *
+   * @return string
+   *   The Id of the question.
+   */
+  public function getId() {
+    return $this->id;
+  }
+
+  /**
    * The Question label.
    *
    * @var string
    */
   protected $label;
+
+  /**
+   * Returns the question that the class contains.
+   *
+   * @return string
+   *   The question that the class contains.
+   */
+  public function getLabel() {
+    return $this->label;
+  }
 
   /**
    * Weight of this question in the list of questionnaire questions.
