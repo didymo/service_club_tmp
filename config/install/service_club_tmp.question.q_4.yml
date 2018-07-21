@@ -1,3 +1,4 @@
 id: q_4
 label: 'Will it impact local traffic and roads?'
 weight: 4
+event_class: ec_2

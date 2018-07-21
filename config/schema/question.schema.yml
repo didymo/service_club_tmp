@@ -13,3 +13,6 @@ service_club_tmp.question.*:
     weight:
       type: integer
       label: 'Weight'
+    event_class:
+      type: string
+      label: 'Event Class'

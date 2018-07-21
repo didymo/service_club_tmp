@@ -38,6 +38,7 @@ class EventClassForm extends EntityForm {
     $form['description'] = array(
       '#type' => 'textarea',
       '#title' => $this->t('Description'),
+      '#default_value' => $event_class->getDescription(),
       '#description' => $this->t("Details what an event class entails."),
     );
 

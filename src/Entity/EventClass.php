@@ -72,4 +72,14 @@ class EventClass extends ConfigEntityBase implements EventClassInterface {
    */
   protected $description;
 
+  /**
+   * Returns the description of the event class.
+   *
+   * @return string
+   *   The description of the event class.
+   */
+  public function getDescription() {
+    return $this->description;
+  }
+
 }

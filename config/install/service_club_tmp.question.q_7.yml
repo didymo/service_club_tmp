@@ -1,3 +1,4 @@
 id: q_7
 label: 'Will it disrupt the non-event community in the immediate area only?'
 weight: 7
+event_class: ec_3

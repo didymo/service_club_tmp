@@ -1,3 +1,4 @@
 id: q_8
 label: 'Is it a minor event under Police supervision?'
 weight: 8
+event_class: ec_4

@@ -1,3 +1,4 @@
 id: q_6
 label: 'Will your event impact local transport systems? (Local buses and routes)'
 weight: 6
+event_class: ec_2

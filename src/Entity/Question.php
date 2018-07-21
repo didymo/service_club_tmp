@@ -28,7 +28,8 @@ use Drupal\Core\Config\Entity\ConfigEntityBase;
  *     "id" = "id",
  *     "label" = "label",
  *     "weight" = "weight",
- *     "uuid" = "uuid"
+ *     "uuid" = "uuid",
+ *     "event_class" = "event_class"
  *   },
  *   links = {
  *     "canonical" = "/admin/config/tmp/question/{question}",
@@ -93,6 +94,23 @@ class Question extends ConfigEntityBase implements QuestionInterface {
    */
   public function getWeight() {
     return $this->weight;
+  }
+
+  /**
+   * Answering yes to this question, places the event into this Event Class.
+   *
+   * @var string
+   */
+  protected $event_class;
+
+  /**
+   * Returns the Id of the event_class that this question points to.
+   *
+   * @return string
+   *   The Id of the event_class that this question points to.
+   */
+  public function getEventClass() {
+    return $this->event_class;
   }
 
 }

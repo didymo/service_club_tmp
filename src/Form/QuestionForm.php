@@ -4,6 +4,7 @@ namespace Drupal\service_club_tmp\Form;
 
 use Drupal\Core\Entity\EntityForm;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\service_club_tmp\Entity\EventClass;
 
 /**
  * Class QuestionForm.
@@ -35,7 +36,13 @@ class QuestionForm extends EntityForm {
       '#disabled' => !$question->isNew(),
     ];
 
-    /* You will need additional form elements for your custom properties. */
+    $form['event_class'] = [
+      '#type' => 'entity_autocomplete',
+      '#target_type' => 'event_class',
+      '#title' => $this->t('Event Class'),
+      '#default_value' => EventClass::load($question->getEventClass()),
+      '#description' => $this->t("Answering yes to this question, places the event into this Event Class."),
+    ];
 
     return $form;
   }

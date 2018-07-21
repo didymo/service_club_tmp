@@ -1,3 +1,4 @@
 id: q_1
 label: 'Will it impact a major road(s)?'
 weight: 1
+event_class: ec_1
