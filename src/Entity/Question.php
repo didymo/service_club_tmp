@@ -85,4 +85,14 @@ class Question extends ConfigEntityBase implements QuestionInterface {
    */
   protected $weight = 0;
 
+  /**
+   * The weight of the question determines the order they are displayed.
+   *
+   * @return int
+   *   The weight of the question.
+   */
+  public function getWeight() {
+    return $this->weight;
+  }
+
 }

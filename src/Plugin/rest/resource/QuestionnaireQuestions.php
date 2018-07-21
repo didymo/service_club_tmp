@@ -76,9 +76,6 @@ class QuestionnaireQuestions extends ResourceBase {
   /**
    * Responds to GET requests.
    *
-   * @param \Drupal\Core\Entity\EntityInterface $entity
-   *   The entity object.
-   *
    * @return \Drupal\rest\ResourceResponse
    *   The HTTP response object.
    *
@@ -93,14 +90,34 @@ class QuestionnaireQuestions extends ResourceBase {
       throw new AccessDeniedHttpException();
     }
 
-    $questions = Question::loadMultiple();
-    $response = [];
+    $question_configs = Question::loadMultiple();
+    $q_ids = [];
 
-    foreach ($questions as $question) {
-      $response = $response + [$question->getId() => $question->getLabel()];
+    // Pull the Ids and the weights on the configs.
+    foreach ($question_configs as $question_config) {
+      $q_ids = $q_ids + [$question_config->getId() => $question_config->getWeight()];
     }
 
-    return new ResourceResponse($response, 200);
+    // Sort based on the weights.
+    asort($q_ids);
+
+    $response = [];
+
+    // Use the sorted Ids to pull the questions and fill the response.
+    foreach ($q_ids as $q_id => $weight) {
+      $response = $response + [$q_id => \Drupal::config('service_club_tmp.question.' . $q_id)->get('label')];
+    }
+
+    // Prevent the response from caching.
+    // TODO: Have the cache reset when the question list is edited,
+    // which will allow this code to be removed.
+    $build = array(
+      '#cache' => array(
+        'max-age' => 0,
+      ),
+    );
+
+    return (new ResourceResponse($response, 200))->addCacheableDependency($build);
   }
 
 }
