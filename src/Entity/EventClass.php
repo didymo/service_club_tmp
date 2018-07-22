@@ -50,11 +50,31 @@ class EventClass extends ConfigEntityBase implements EventClassInterface {
   protected $id;
 
   /**
+   * Returns the Id of the Event class.
+   *
+   * @return string
+   *   The Id of the Event class.
+   */
+  public function getId() {
+    return $this->id;
+  }
+
+  /**
    * The Event class name.
    *
    * @var string
    */
   protected $label;
+
+  /**
+   * Returns the Event class name.
+   *
+   * @return string
+   *   The Event class name.
+   */
+  public function getLabel() {
+    return $this->label;
+  }
 
   /**
    * Weight of this event class in the hierarchy of event classes.
@@ -64,6 +84,18 @@ class EventClass extends ConfigEntityBase implements EventClassInterface {
    * @var int
    */
   protected $weight = 0;
+
+  /**
+   * Weight of this event class in the hierarchy of event classes.
+   *
+   * Each event class dominates the classes beneath it to form the hierarchy.
+   *
+   * @return int
+   *   Weight of this event class in the hierarchy of event classes.
+   */
+  public function getWeight() {
+    return $this->weight;
+  }
 
   /**
    * Holds the description of the event class.
