@@ -18,13 +18,23 @@ view published questionnaire entities:
 view unpublished questionnaire entities:
   title: 'View unpublished Questionnaire entities'
 
-view all questionnaire revisions:
-  title: 'View all Questionnaire revisions'
+add question response entities:
+  title: 'Create new Question response entities'
 
-revert all questionnaire revisions:
-  title: 'Revert all Questionnaire revisions'
-  description: 'Role requires permission <em>view Questionnaire revisions</em> and <em>edit rights</em> for questionnaire entities in question or <em>administer questionnaire entities</em>.'
+administer question response entities:
+  title: 'Administer Question response entities'
+  description: 'Allow to access the administration form to configure Question response entities.'
+  restrict access: true
 
-delete all questionnaire revisions:
-  title: 'Delete all revisions'
-  description: 'Role requires permission to <em>view Questionnaire revisions</em> and <em>delete rights</em> for questionnaire entities in question or <em>administer questionnaire entities</em>.'
+delete question response entities:
+  title: 'Delete Question response entities'
+
+edit question response entities:
+  title: 'Edit Question response entities'
+
+view published question response entities:
+  title: 'View published Question response entities'
+
+view unpublished question response entities:
+  title: 'View unpublished Question response entities'
+

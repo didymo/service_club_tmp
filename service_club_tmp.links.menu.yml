@@ -36,3 +36,18 @@ questionnaire.admin.structure.settings:
   description: 'Configure Questionnaire entities'
   route_name: questionnaire.settings
   parent: system.admin_structure
+
+# Question response menu items definition
+entity.question_response.collection:
+  title: 'Question response list'
+  route_name: entity.question_response.collection
+  description: 'List Question response entities'
+  parent: system.admin_structure
+  weight: 100
+
+question_response.admin.structure.settings:
+  title: 'Question response settings'
+  description: 'Configure Question response entities'
+  route_name: question_response.settings
+  parent: system.admin_structure
+
