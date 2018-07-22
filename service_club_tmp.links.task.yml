@@ -14,14 +14,31 @@ entity.questionnaire.edit_form:
   base_route: entity.questionnaire.canonical
   title: 'Edit'
 
-entity.questionnaire.version_history:
-  route_name: entity.questionnaire.version_history
-  base_route: entity.questionnaire.canonical
-  title: 'Revisions'
-
 entity.questionnaire.delete_form:
   route_name:  entity.questionnaire.delete_form
   base_route:  entity.questionnaire.canonical
+  title: Delete
+  weight: 10
+
+# Question response routing definition
+question_response.settings_tab:
+  route_name: question_response.settings
+  title: 'Settings'
+  base_route: question_response.settings
+
+entity.question_response.canonical:
+  route_name: entity.question_response.canonical
+  base_route: entity.question_response.canonical
+  title: 'View'
+
+entity.question_response.edit_form:
+  route_name: entity.question_response.edit_form
+  base_route: entity.question_response.canonical
+  title: 'Edit'
+
+entity.question_response.delete_form:
+  route_name:  entity.question_response.delete_form
+  base_route:  entity.question_response.canonical
   title: Delete
   weight: 10
 

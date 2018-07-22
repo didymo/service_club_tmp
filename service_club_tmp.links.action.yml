@@ -15,3 +15,10 @@ entity.questionnaire.add_form:
   title: 'Add Questionnaire'
   appears_on:
     - entity.questionnaire.collection
+
+entity.question_response.add_form:
+  route_name: entity.question_response.add_form
+  title: 'Add Question response'
+  appears_on:
+    - entity.question_response.collection
+

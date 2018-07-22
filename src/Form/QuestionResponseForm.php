@@ -6,17 +6,17 @@ use Drupal\Core\Entity\ContentEntityForm;
 use Drupal\Core\Form\FormStateInterface;
 
 /**
- * Form controller for Questionnaire edit forms.
+ * Form controller for Question response edit forms.
  *
  * @ingroup service_club_tmp
  */
-class QuestionnaireForm extends ContentEntityForm {
+class QuestionResponseForm extends ContentEntityForm {
 
   /**
    * {@inheritdoc}
    */
   public function buildForm(array $form, FormStateInterface $form_state) {
-    /* @var $entity \Drupal\service_club_tmp\Entity\Questionnaire */
+    /* @var $entity \Drupal\service_club_tmp\Entity\QuestionResponse */
     $form = parent::buildForm($form, $form_state);
 
     $entity = $this->entity;
@@ -34,17 +34,17 @@ class QuestionnaireForm extends ContentEntityForm {
 
     switch ($status) {
       case SAVED_NEW:
-        drupal_set_message($this->t('Created the %label Questionnaire.', [
+        drupal_set_message($this->t('Created the %label Question response.', [
           '%label' => $entity->label(),
         ]));
         break;
 
       default:
-        drupal_set_message($this->t('Saved the %label Questionnaire.', [
+        drupal_set_message($this->t('Saved the %label Question response.', [
           '%label' => $entity->label(),
         ]));
     }
-    $form_state->setRedirect('entity.questionnaire.canonical', ['questionnaire' => $entity->id()]);
+    $form_state->setRedirect('entity.question_response.canonical', ['question_response' => $entity->id()]);
   }
 
 }

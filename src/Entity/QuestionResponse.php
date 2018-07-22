@@ -4,41 +4,40 @@ namespace Drupal\service_club_tmp\Entity;
 
 use Drupal\Core\Entity\EntityStorageInterface;
 use Drupal\Core\Field\BaseFieldDefinition;
-use Drupal\Core\Field\FieldStorageDefinitionInterface;
 use Drupal\Core\Entity\ContentEntityBase;
 use Drupal\Core\Entity\EntityChangedTrait;
 use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\user\UserInterface;
 
 /**
- * Defines the Questionnaire entity.
+ * Defines the Question response entity.
  *
  * @ingroup service_club_tmp
  *
  * @ContentEntityType(
- *   id = "questionnaire",
- *   label = @Translation("Questionnaire"),
+ *   id = "question_response",
+ *   label = @Translation("Question response"),
  *   handlers = {
  *     "view_builder" = "Drupal\Core\Entity\EntityViewBuilder",
- *     "list_builder" = "Drupal\service_club_tmp\QuestionnaireListBuilder",
- *     "views_data" = "Drupal\service_club_tmp\Entity\QuestionnaireViewsData",
- *     "translation" = "Drupal\service_club_tmp\QuestionnaireTranslationHandler",
+ *     "list_builder" = "Drupal\service_club_tmp\QuestionResponseListBuilder",
+ *     "views_data" = "Drupal\service_club_tmp\Entity\QuestionResponseViewsData",
+ *     "translation" = "Drupal\service_club_tmp\QuestionResponseTranslationHandler",
  *
  *     "form" = {
- *       "default" = "Drupal\service_club_tmp\Form\QuestionnaireForm",
- *       "add" = "Drupal\service_club_tmp\Form\QuestionnaireForm",
- *       "edit" = "Drupal\service_club_tmp\Form\QuestionnaireForm",
- *       "delete" = "Drupal\service_club_tmp\Form\QuestionnaireDeleteForm",
+ *       "default" = "Drupal\service_club_tmp\Form\QuestionResponseForm",
+ *       "add" = "Drupal\service_club_tmp\Form\QuestionResponseForm",
+ *       "edit" = "Drupal\service_club_tmp\Form\QuestionResponseForm",
+ *       "delete" = "Drupal\service_club_tmp\Form\QuestionResponseDeleteForm",
  *     },
- *     "access" = "Drupal\service_club_tmp\QuestionnaireAccessControlHandler",
+ *     "access" = "Drupal\service_club_tmp\QuestionResponseAccessControlHandler",
  *     "route_provider" = {
- *       "html" = "Drupal\service_club_tmp\QuestionnaireHtmlRouteProvider",
+ *       "html" = "Drupal\service_club_tmp\QuestionResponseHtmlRouteProvider",
  *     },
  *   },
- *   base_table = "questionnaire",
- *   data_table = "questionnaire_field_data",
+ *   base_table = "question_response",
+ *   data_table = "question_response_field_data",
  *   translatable = TRUE,
- *   admin_permission = "administer questionnaire entities",
+ *   admin_permission = "administer question response entities",
  *   entity_keys = {
  *     "id" = "id",
  *     "label" = "name",
@@ -48,16 +47,16 @@ use Drupal\user\UserInterface;
  *     "status" = "status",
  *   },
  *   links = {
- *     "canonical" = "/admin/structure/questionnaire/{questionnaire}",
- *     "add-form" = "/admin/structure/questionnaire/add",
- *     "edit-form" = "/admin/structure/questionnaire/{questionnaire}/edit",
- *     "delete-form" = "/admin/structure/questionnaire/{questionnaire}/delete",
- *     "collection" = "/admin/structure/questionnaire",
+ *     "canonical" = "/admin/structure/question_response/{question_response}",
+ *     "add-form" = "/admin/structure/question_response/add",
+ *     "edit-form" = "/admin/structure/question_response/{question_response}/edit",
+ *     "delete-form" = "/admin/structure/question_response/{question_response}/delete",
+ *     "collection" = "/admin/structure/question_response",
  *   },
- *   field_ui_base_route = "questionnaire.settings"
+ *   field_ui_base_route = "question_response.settings"
  * )
  */
-class Questionnaire extends ContentEntityBase implements QuestionnaireInterface {
+class QuestionResponse extends ContentEntityBase implements QuestionResponseInterface {
 
   use EntityChangedTrait;
 
@@ -154,7 +153,7 @@ class Questionnaire extends ContentEntityBase implements QuestionnaireInterface 
 
     $fields['user_id'] = BaseFieldDefinition::create('entity_reference')
       ->setLabel(t('Authored by'))
-      ->setDescription(t('The user ID of author of the Questionnaire entity.'))
+      ->setDescription(t('The user ID of author of the Question response entity.'))
       ->setRevisionable(TRUE)
       ->setSetting('target_type', 'user')
       ->setSetting('handler', 'default')
@@ -179,8 +178,7 @@ class Questionnaire extends ContentEntityBase implements QuestionnaireInterface 
 
     $fields['name'] = BaseFieldDefinition::create('string')
       ->setLabel(t('Name'))
-      ->setDescription(t('The name of the Questionnaire entity.'))
-      ->setRevisionable(TRUE)
+      ->setDescription(t('The name of the Question response entity.'))
       ->setSettings([
         'max_length' => 50,
         'text_processing' => 0,
@@ -199,9 +197,30 @@ class Questionnaire extends ContentEntityBase implements QuestionnaireInterface 
       ->setDisplayConfigurable('view', TRUE)
       ->setRequired(TRUE);
 
+    $fields['question'] = BaseFieldDefinition::create('string')
+      ->setLabel(t('Question'))
+      ->setDescription(t('A carbon copy of the question that was answered.'))
+      ->setSettings([
+        'max_length' => 150,
+        'text_processing' => 0,
+      ])
+      ->setDefaultValue('')
+      ->setDisplayOptions('view', [
+        'label' => 'above',
+        'type' => 'string',
+        'weight' => -4,
+      ])
+      ->setDisplayOptions('form', [
+        'type' => 'string_textfield',
+        'weight' => -4,
+      ])
+      ->setDisplayConfigurable('form', TRUE)
+      ->setDisplayConfigurable('view', TRUE)
+      ->setRequired(TRUE);
+
     $fields['status'] = BaseFieldDefinition::create('boolean')
       ->setLabel(t('Publishing status'))
-      ->setDescription(t('A boolean indicating whether the Questionnaire is published.'))
+      ->setDescription(t('A boolean indicating whether the Question response is published.'))
       ->setDefaultValue(TRUE)
       ->setDisplayOptions('form', [
         'type' => 'boolean_checkbox',
@@ -216,52 +235,14 @@ class Questionnaire extends ContentEntityBase implements QuestionnaireInterface 
       ->setLabel(t('Changed'))
       ->setDescription(t('The time that the entity was last edited.'));
 
-    $fields['question_response'] = BaseFieldDefinition::create('entity_reference')
-      ->setLabel(t('Question Responses'))
-      ->setDescription(t('The questions completed by the user.'))
-      ->setSetting('target_type', 'question_response')
-      ->setSetting('handler', 'default')
-      ->setCardinality(FieldStorageDefinitionInterface::CARDINALITY_UNLIMITED)
-      ->setTranslatable(TRUE)
-      ->setDisplayOptions('view', [
-        'type' => 'string_textfield',
-        'weight' => 6,
-      ])
+    $fields['response'] = BaseFieldDefinition::create('boolean')
+      ->setLabel(t('Response'))
+      ->setDescription(t("The user's response to the to the question."))
+      ->setDefaultValue(FALSE)
       ->setDisplayOptions('form', [
-        'type' => 'entity_reference_autocomplete',
-        'weight' => 6,
-        'settings' => [
-          'match_operator' => 'CONTAINS',
-          'size' => '60',
-          'autocomplete_type' => 'tags',
-          'placeholder' => '',
-        ],
-      ])
-      ->setDisplayConfigurable('form', TRUE)
-      ->setDisplayConfigurable('view', TRUE);
-
-    $fields['event_class'] = BaseFieldDefinition::create('entity_reference')
-      ->setLabel(t('Event Class'))
-      ->setDescription(t('The event class that the system determines the event to be.'))
-      ->setSetting('target_type', 'event_class')
-      ->setSetting('handler', 'default')
-      ->setTranslatable(TRUE)
-      ->setDisplayOptions('view', [
-        'type' => 'string_textfield',
-        'weight' => 7,
-      ])
-      ->setDisplayOptions('form', [
-        'type' => 'entity_reference_autocomplete',
-        'weight' => 7,
-        'settings' => [
-          'match_operator' => 'CONTAINS',
-          'size' => '60',
-          'autocomplete_type' => 'tags',
-          'placeholder' => '',
-        ],
-      ])
-      ->setDisplayConfigurable('form', TRUE)
-      ->setDisplayConfigurable('view', TRUE);
+        'type' => 'boolean_checkbox',
+        'weight' => -3,
+      ]);
 
     return $fields;
   }
