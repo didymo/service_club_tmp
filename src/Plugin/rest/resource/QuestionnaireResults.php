@@ -9,6 +9,7 @@ use Drupal\rest\ResourceResponse;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
+use Drupal\service_club_tmp\Entity\Questionnaire;
 
 /**
  * Provides a resource to get view modes by entity and bundle.
@@ -17,7 +18,7 @@ use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
  *   id = "questionnaire_results",
  *   label = @Translation("Questionnaire results"),
  *   uri_paths = {
- *     "canonical" = "/questionnaire/results"
+ *     "canonical" = "/questionnaire/results/{id}"
  *   }
  * )
  */
@@ -84,15 +85,16 @@ class QuestionnaireResults extends ResourceBase {
    * @throws \Symfony\Component\HttpKernel\Exception\HttpException
    *   Throws exception expected.
    */
-  public function get(EntityInterface $entity) {
+  public function get($questionnaire_id) {
 
-    // You must to implement the logic of your REST Resource here.
     // Use current user after pass authentication to validate access.
     if (!$this->currentUser->hasPermission('access content')) {
       throw new AccessDeniedHttpException();
     }
 
-    return new ResourceResponse($entity, 200);
+    $questionnaire = Questionnaire::load($questionnaire_id);
+
+    return new ResourceResponse($questionnaire, 200);
   }
 
 }
