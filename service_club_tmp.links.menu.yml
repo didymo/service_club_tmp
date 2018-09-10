@@ -51,3 +51,17 @@ question_response.admin.structure.settings:
   route_name: question_response.settings
   parent: system.admin_structure
 
+
+# Traffic management plan menu items definition
+entity.traffic_management_plan.collection:
+  title: 'Traffic management plan list'
+  route_name: entity.traffic_management_plan.collection
+  description: 'List Traffic management plan entities'
+  parent: system.admin_structure
+  weight: 100
+
+traffic_management_plan.admin.structure.settings:
+  title: 'Traffic management plan settings'
+  description: 'Configure Traffic management plan entities'
+  route_name: traffic_management_plan.settings
+  parent: system.admin_structure

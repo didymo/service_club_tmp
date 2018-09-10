@@ -9,20 +9,19 @@ use Drupal\rest\ResourceResponse;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
-use Drupal\service_club_tmp\Entity\Question;
 
 /**
  * Provides a resource to get view modes by entity and bundle.
  *
  * @RestResource(
- *   id = "questionnaire_questions",
- *   label = @Translation("Questionnaire questions"),
+ *   id = "get_tmp",
+ *   label = @Translation("Get tmp"),
  *   uri_paths = {
- *     "canonical" = "/questionnaire/questions"
+ *     "canonical" = "/tmp/{tmp}"
  *   }
  * )
  */
-class QuestionnaireQuestions extends ResourceBase {
+class GetTMP extends ResourceBase {
 
   /**
    * A current user instance.
@@ -32,7 +31,7 @@ class QuestionnaireQuestions extends ResourceBase {
   protected $currentUser;
 
   /**
-   * Constructs a new QuestionnaireQuestions object.
+   * Constructs a new GetTMP object.
    *
    * @param array $configuration
    *   A configuration array containing information about the plugin instance.
@@ -76,48 +75,23 @@ class QuestionnaireQuestions extends ResourceBase {
   /**
    * Responds to GET requests.
    *
+   * @param \Drupal\Core\Entity\EntityInterface $entity
+   *   The entity object.
+   *
    * @return \Drupal\rest\ResourceResponse
    *   The HTTP response object.
    *
    * @throws \Symfony\Component\HttpKernel\Exception\HttpException
    *   Throws exception expected.
    */
-  public function get() {
+  public function get($json) {
 
-    // You must to implement the logic of your REST Resource here.
     // Use current user after pass authentication to validate access.
     if (!$this->currentUser->hasPermission('access content')) {
       throw new AccessDeniedHttpException();
     }
 
-    $question_configs = Question::loadMultiple();
-    $q_ids = [];
-
-    // Pull the Ids and the weights on the configs.
-    foreach ($question_configs as $question_config) {
-      $q_ids = $q_ids + [$question_config->getId() => $question_config->getWeight()];
-    }
-
-    // Sort based on the weights.
-    asort($q_ids);
-
-    $response = [];
-
-    // Use the sorted Ids to pull the questions and fill the response.
-    foreach ($q_ids as $q_id => $weight) {
-      $response = $response + [$q_id => \Drupal::config('service_club_tmp.question.' . $q_id)->get('label')];
-    }
-
-    // Prevent the response from caching.
-    // TODO: Have the cache reset when the question list is edited,
-    // which will allow this code to be removed.
-    $build = array(
-      '#cache' => array(
-        'max-age' => 0,
-      ),
-    );
-
-    return (new ResourceResponse($response, 200))->addCacheableDependency($build);
+    return new ResourceResponse($entity, 200);
   }
 
 }

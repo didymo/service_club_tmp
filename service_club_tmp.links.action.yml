@@ -22,3 +22,8 @@ entity.question_response.add_form:
   appears_on:
     - entity.question_response.collection
 
+entity.traffic_management_plan.add_form:
+  route_name: entity.traffic_management_plan.add_form
+  title: 'Add Traffic management plan'
+  appears_on:
+    - entity.traffic_management_plan.collection

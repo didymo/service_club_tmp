@@ -1,0 +1,18 @@
+id: create_tmp
+plugin_id: create_tmp
+granularity: resource
+dependencies:
+  module:
+    - basic_auth
+    - hal
+    - serialization
+    - service_club_tmp
+configuration:
+  methods:
+    - POST
+  formats:
+    - hal_json
+    - json
+    - xml
+  authentication:
+    - basic_auth
