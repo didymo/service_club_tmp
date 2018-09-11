@@ -101,11 +101,11 @@ class QuestionnaireQuestions extends ResourceBase {
     // Sort based on the weights.
     asort($q_ids);
 
-    $response = [];
+    $response = array();
 
     // Use the sorted Ids to pull the questions and fill the response.
     foreach ($q_ids as $q_id => $weight) {
-      $response = $response + [$q_id => \Drupal::config('service_club_tmp.question.' . $q_id)->get('label')];
+      $response[] = array($q_id => \Drupal::config('service_club_tmp.question.' . $q_id)->get('label'));
     }
 
     // Prevent the response from caching.
