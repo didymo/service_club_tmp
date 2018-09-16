@@ -27,3 +27,4 @@ entity.traffic_management_plan.add_form:
   title: 'Add Traffic management plan'
   appears_on:
     - entity.traffic_management_plan.collection
+

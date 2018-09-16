@@ -5,3 +5,19 @@ tmp.admin_index:
     _title: 'Traffic Management Plan'
   requirements:
     _permission: 'access administration pages'
+
+entity.event_class_section.add_form:
+  path: '/admin/config/tmp/event_class/{event_class}/add'
+  defaults:
+    _controller: '\Drupal\service_club_tmp\Controller\EventClassController::addForm'
+    _title: 'Add Event Class Section'
+  requirements:
+    _access: 'TRUE'
+
+entity.event_class.section_list:
+  path: '/admin/config/tmp/event_class/{event_class}/sections'
+  defaults:
+    _form: '\Drupal\service_club_tmp\Form\OverviewEventClassSections'
+    _title: 'Event Class Sections'
+  requirements:
+    _access: 'TRUE'

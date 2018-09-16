@@ -3,6 +3,7 @@
 namespace Drupal\service_club_tmp\Entity;
 
 use Drupal\Core\Config\Entity\ConfigEntityBase;
+use Drupal\service_club_tmp\Entity\EventClassSection;
 
 /**
  * Defines the Event class entity.
@@ -16,7 +17,8 @@ use Drupal\Core\Config\Entity\ConfigEntityBase;
  *     "form" = {
  *       "add" = "Drupal\service_club_tmp\Form\EventClassForm",
  *       "edit" = "Drupal\service_club_tmp\Form\EventClassForm",
- *       "delete" = "Drupal\service_club_tmp\Form\EventClassDeleteForm"
+ *       "delete" = "Drupal\service_club_tmp\Form\EventClassDeleteForm",
+ *       "section-list" = "Drupal\service_club_tmp\Form\OverviewEventClassSections"
  *     },
  *     "route_provider" = {
  *       "html" = "Drupal\service_club_tmp\EventClassHtmlRouteProvider",
@@ -28,15 +30,16 @@ use Drupal\Core\Config\Entity\ConfigEntityBase;
  *     "id" = "id",
  *     "label" = "label",
  *     "weight" = "weight",
- *     "description" = "description",
- *     "uuid" = "uuid"
+ *     "uuid" = "uuid",
+ *     "event_class_sections" = "event_class_sections"
  *   },
  *   links = {
  *     "canonical" = "/admin/config/tmp/event_class/{event_class}",
  *     "add-form" = "/admin/config/tmp/event_class/add",
  *     "edit-form" = "/admin/config/tmp/event_class/{event_class}/edit",
  *     "delete-form" = "/admin/config/tmp/event_class/{event_class}/delete",
- *     "collection" = "/admin/config/tmp/event_class"
+ *     "collection" = "/admin/config/tmp/event_class",
+ *     "section-list" = "/admin/config/tmp/event_class/{event_class}/sections"
  *   }
  * )
  */
@@ -50,10 +53,7 @@ class EventClass extends ConfigEntityBase implements EventClassInterface {
   protected $id;
 
   /**
-   * Returns the Id of the Event class.
-   *
-   * @return string
-   *   The Id of the Event class.
+   * {@inheritdoc}
    */
   public function getId() {
     return $this->id;
@@ -67,10 +67,7 @@ class EventClass extends ConfigEntityBase implements EventClassInterface {
   protected $label;
 
   /**
-   * Returns the Event class name.
-   *
-   * @return string
-   *   The Event class name.
+   * {@inheritdoc}
    */
   public function getLabel() {
     return $this->label;
@@ -86,32 +83,49 @@ class EventClass extends ConfigEntityBase implements EventClassInterface {
   protected $weight = 0;
 
   /**
-   * Weight of this event class in the hierarchy of event classes.
-   *
-   * Each event class dominates the classes beneath it to form the hierarchy.
-   *
-   * @return int
-   *   Weight of this event class in the hierarchy of event classes.
+   * {@inheritdoc}
    */
   public function getWeight() {
     return $this->weight;
   }
 
   /**
-   * Holds the description of the event class.
+   * The Event Class Section ids for this event class.
    *
-   * @var string
+   * @var string[]
    */
-  protected $description;
+  protected $sections = array();
 
   /**
-   * Returns the description of the event class.
-   *
-   * @return string
-   *   The description of the event class.
+   * {@inheritdoc}
    */
-  public function getDescription() {
-    return $this->description;
+  public function getEventClassSections() {
+    $references = $this->get('sections');
+    $sections = array();
+    foreach($references as $sectionId) {
+      $sections[] = EventClassSection::Load($sectionId);
+    }
+    return $sections;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function addSection($sectionId) {
+    $sections = $this->get('sections');
+    array_push($sections, $sectionId);
+    $this->set('sections', $sections);
+    $this->save(TRUE);
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function deleteSection($sectionId) {
+    $sections = $this->get('sections');
+    unset($sections[$sectionId]);
+    $this->set('sections', $sections);
+    $this->save(TRUE);
   }
 
 }
