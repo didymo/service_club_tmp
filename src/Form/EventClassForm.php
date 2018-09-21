@@ -35,13 +35,6 @@ class EventClassForm extends EntityForm {
       '#disabled' => !$event_class->isNew(),
     ];
 
-    $form['description'] = array(
-      '#type' => 'textarea',
-      '#title' => $this->t('Description'),
-      '#default_value' => $event_class->getDescription(),
-      '#description' => $this->t("Details what an event class entails."),
-    );
-
     return $form;
   }
 

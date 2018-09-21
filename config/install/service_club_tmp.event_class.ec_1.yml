@@ -1,4 +1,9 @@
 id: ec_1
 label: 'Class 1'
 weight: 1
-description: 'event class 1 description will go here soon'
+sections:
+  - event_class_1_title
+  - event_class_1_includes
+  - event_class_1_optional
+  - event_class_1_documentation
+

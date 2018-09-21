@@ -1,4 +1,9 @@
 id: ec_4
 label: 'Class 4'
 weight: 0
-description: 'event class 4 description will go here soon'
+sections:
+  - event_class_4_title
+  - event_class_4_includes
+  - event_class_4_optional
+  - event_class_4_documentation
+

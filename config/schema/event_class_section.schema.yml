@@ -1,6 +1,6 @@
-service_club_tmp.event_class.*:
+service_club_tmp.event_class_section.*:
   type: config_entity
-  label: 'Event class config'
+  label: 'Event class section config'
   mapping:
     id:
       type: string
@@ -13,9 +13,9 @@ service_club_tmp.event_class.*:
     weight:
       type: integer
       label: 'Weight'
-    sections:
-      type: sequence
-      label: 'Text Sections'
-      sequence:
-        type: string
-        label: 'Text Section'
+    heading:
+      type: string
+      label: 'Heading'
+    description:
+      type: text
+      label: 'Description'

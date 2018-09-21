@@ -13,7 +13,6 @@ entity.question.collection:
   parent: tmp.admin_index
   weight: 98
 
-
 # Event class menu items definition
 entity.event_class.collection:
   title: 'Event class'
@@ -21,7 +20,6 @@ entity.event_class.collection:
   description: 'Configure the list of event classes that an event can be'
   parent: tmp.admin_index
   weight: 99
-
 
 # Questionnaire menu items definition
 entity.questionnaire.collection:
@@ -65,3 +63,4 @@ traffic_management_plan.admin.structure.settings:
   description: 'Configure Traffic management plan entities'
   route_name: traffic_management_plan.settings
   parent: system.admin_structure
+

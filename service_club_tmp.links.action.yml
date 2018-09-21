@@ -27,3 +27,9 @@ entity.traffic_management_plan.add_form:
   title: 'Add Traffic management plan'
   appears_on:
     - entity.traffic_management_plan.collection
+
+entity.event_class_section.add_form:
+  route_name: entity.event_class_section.add_form
+  title: 'Add Event Class Section'
+  appears_on:
+    - entity.event_class.section_list
