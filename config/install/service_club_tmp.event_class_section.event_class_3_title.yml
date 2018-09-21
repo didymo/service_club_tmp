@@ -1,0 +1,9 @@
+uuid: 9b0dd275-a9b6-471c-a3ae-83ba0d64ed84
+langcode: en
+status: true
+dependencies: {  }
+id: event_class_3_title
+label: 'Event Class 3 Title'
+weight: null
+heading: 'Class 3:'
+description: 'is an event with minimal impact on local roads and negligible impact on the non-event community. For example: an on-street neighbourhood Christmas party. '

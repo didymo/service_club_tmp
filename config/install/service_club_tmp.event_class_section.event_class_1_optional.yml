@@ -1,0 +1,9 @@
+uuid: 0dca5a21-f183-4d14-8671-be739e6eebab
+langcode: en
+status: true
+dependencies: {  }
+id: event_class_1_optional
+label: 'Event Class 1 Optional'
+weight: null
+heading: 'Optional:'
+description: "    • Be conducted on-road or in its own venue\r\n    • Involve trusts and authorities when using facilities managed by them\r\n    • Involve the Transport Services Coordination Authority’s\r\n    • Involve the State Rail and State Transit Authorities\r\n    • Involve private bus and coach organisations\r\n    • Impact the road transport industry\r\n    • Require the RTA to implement special event clearways\r\n    • Require the RTA to provide heavy vehicle detour routes\r\n    • Require the RTA to adjust traffic signals\r\n    • Require the RTA to manage messages on Variable Message Signs"

@@ -1,0 +1,9 @@
+uuid: 3c86eb28-2710-4593-b910-911dc5816769
+langcode: en
+status: true
+dependencies: {  }
+id: event_class_4_includes
+label: 'Event Class 4 Includes'
+weight: null
+heading: 'Includes:'
+description: "    • Requires Police consent only\r\n    • Is within the capacity of the Police to manage on their own\r\n    • Is not a protest or demonstration\r\n    • Is always an on-street moving event\r\n    • Does not require RTA or Council consent\r\n    • Does not require advertising the event’s traffic aspects to the community\r\n    • Does not require a Transport Management Plan\r\n    • Does not require the involvement of other Government agencies"

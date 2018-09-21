@@ -1,0 +1,9 @@
+uuid: e2598b08-7490-438c-abba-d67a92607983
+langcode: en
+status: true
+dependencies: {  }
+id: event_class_5_includes
+label: 'Event Class 5 Includes'
+weight: null
+heading: 'Includes:'
+description: "    • Does not impact local or major traffic and transport systems or classified roads\r\n    • Negligible impact to the non-event community in the immediate area only\r\n    • Is never used for racing events"

@@ -1,0 +1,9 @@
+uuid: 02550f8d-46c2-49c5-8b8f-2796f7b65c8f
+langcode: en
+status: true
+dependencies: {  }
+id: event_class_2_title
+label: 'Event Class 2 Title'
+weight: null
+heading: 'Class 2:'
+description: 'is an event that impacts local traffic and transport systems and there is low scale disruption to the non-event community. For example: an event that blocks off the main street of a town or shopping centre but does not impact a principal transport route or a highway.'

@@ -1,0 +1,9 @@
+uuid: 3221f350-afb9-4c9f-986e-4683192baa2f
+langcode: en
+status: true
+dependencies: {  }
+id: event_class_5_title
+label: 'Event Class 5 Title'
+weight: null
+heading: 'Class 5:'
+description: 'is an event that has negligible impact on local roads and negligible impact on the non-event community. For example, a beach BBQ, a family gathering, etc.'

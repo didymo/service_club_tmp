@@ -1,0 +1,9 @@
+uuid: 50ba1f66-aa21-437e-bc41-4eb3ca3e7dda
+langcode: en
+status: true
+dependencies: {  }
+id: event_class_2_includes
+label: 'Event Class 2 Includes'
+weight: null
+heading: 'Includes:'
+description: "    • Impacts local traffic and transport systems but does not impact major traffic and transport systems\r\n    • Disrupts the non-event community in the area around the event but not over a wide area\r\n    • Requires the involvement of Police and Local Council\r\n    • Requires a detailed Transport Management Plan (TMP)\r\n    • Requires advertising the event traffic aspects to the local community"

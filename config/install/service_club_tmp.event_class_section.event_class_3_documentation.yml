@@ -1,0 +1,9 @@
+uuid: 07a7edca-6d73-44d3-9d03-ec4a5e73e3aa
+langcode: en
+status: true
+dependencies: {  }
+id: event_class_3_documentation
+label: 'Event Class 3 Documentation'
+weight: null
+heading: 'Documentation:'
+description: "    • A Traffic Management Plan is not required\r\n    • Any additional documentation provided by local council"

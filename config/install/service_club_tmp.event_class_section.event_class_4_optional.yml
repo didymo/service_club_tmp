@@ -1,0 +1,9 @@
+uuid: 8d2b5c8c-f183-4c71-9cdd-d8b29ded1629
+langcode: en
+status: true
+dependencies: {  }
+id: event_class_4_optional
+label: 'Event Class 4 Optional'
+weight: null
+heading: 'Optional:'
+description: "    • Be conducted on classified or non-classified roads\r\n    • Cause zero to considerable disruption to non-event community\r\n    • Cross Police Local Area Commands (LACs)\r\n    • Cross Local Government Areas (LGAs)\r\n    • Require Council and RTA to assist if requested by Police\r\n    • Depending on the nature of the event, invoke the Police “User Pays” police"

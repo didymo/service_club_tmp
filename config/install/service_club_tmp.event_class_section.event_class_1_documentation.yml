@@ -1,0 +1,9 @@
+uuid: b71a981c-788d-412b-81e7-57c3ba831493
+langcode: en
+status: true
+dependencies: {  }
+id: event_class_1_documentation
+label: 'Event Class 1 Documentation'
+weight: null
+heading: 'Documentation:'
+description: "    • If not a vehicle event, a Police Schedule 1 form is required\r\n    • A Traffic Management Plan is required\r\n    • Any additional documentation provided by local council"

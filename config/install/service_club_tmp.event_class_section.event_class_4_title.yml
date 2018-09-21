@@ -1,0 +1,9 @@
+uuid: 8e8f2a7c-1daf-4344-9245-fc969af2b17a
+langcode: en
+status: true
+dependencies: {  }
+id: event_class_4_title
+label: 'Event Class 4 Title'
+weight: null
+heading: 'Class 4:'
+description: 'is an event that is conducted entirely under Police control (but is not a protest or demonstration). For example: a small march conducted with a Police escort.'
