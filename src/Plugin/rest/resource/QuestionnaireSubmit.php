@@ -100,21 +100,26 @@ class QuestionnaireSubmit extends ResourceBase {
     $question_configs = Question::loadMultiple();
 
     // Check that all the expected questions are in the json object.
+    $errors = array();
     foreach ($question_configs as $question_config) {
       $q_id = $question_config->getId();
       $q_label = $question_config->getLabel();
       // Check the question is in the POST.
       if (!array_key_exists($q_id, $json)) {
-        return new ModifiedResourceResponse(["Invalid questionnaire submission, missing $q_id."], 400);
+        $errors[] = array("Invalid questionnaire submission" => "Missing $q_id.");
       }
       // Check the question matches the one stored in the system.
       if (!array_key_exists($q_label, $json[$q_id])) {
-        return new ModifiedResourceResponse(["Invalid questionnaire submission, expected $q_id to have an object keyed with '$q_label'.)"], 400);
+        $errors[] = array("Invalid questionnaire submission" => "Expected $q_id to have an object keyed with '$q_label'.)");
       }
       // Check the question has been answered with a boolean.
       if (!is_bool($json[$q_id][$q_label])) {
-        return new ModifiedResourceResponse(["Invalid questionnaire submission, expected $q_id : $q_label to map to a boolean.)"], 400);
+        $errors[] = array("Invalid questionnaire submission" => "Expected $q_id : $q_label to map to a boolean.");
       }
+    }
+
+    if(!empty($errors)) {
+      return new ModifiedResourceResponse($errors, 400);
     }
 
     // Load the list of Event Classes.
@@ -180,7 +185,7 @@ class QuestionnaireSubmit extends ResourceBase {
     ]);
     $questionnaire->save();
 
-    return new ModifiedResourceResponse($ec_configs[$event_class]->getDescription(), 200);
+    return new ModifiedResourceResponse(["Questionnaire successfully submitted."], 200);
   }
 
 }
