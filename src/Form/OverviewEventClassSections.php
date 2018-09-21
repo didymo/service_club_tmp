@@ -187,11 +187,6 @@ class OverviewEventClassSections extends FormBase {
         ];
       }
 
-      /*$form['sections'][$key]['#attributes']['class'] = [];
-      if ($parent_fields) {
-        $form['sections'][$key]['#attributes']['class'][] = 'draggable';
-      }*/
-
       // Add an error class if this row contains a form error.
       foreach ($errors as $error_key => $error) {
         if (strpos($error_key, $key) === 0) {
@@ -201,161 +196,28 @@ class OverviewEventClassSections extends FormBase {
       $row_position++;
     }
 
-    /*$this->renderer->addCacheableDependency($form['terms'], $change_weight_access);
-    if ($change_weight_access->isAllowed()) {
-      if ($parent_fields) {
-        $form['terms']['#tabledrag'][] = [
-          'action' => 'match',
-          'relationship' => 'parent',
-          'group' => 'term-parent',
-          'subgroup' => 'term-parent',
-          'source' => 'term-id',
-          'hidden' => FALSE,
-        ];
-        $form['terms']['#tabledrag'][] = [
-          'action' => 'depth',
-          'relationship' => 'group',
-          'group' => 'term-depth',
-          'hidden' => FALSE,
-        ];
-        $form['terms']['#attached']['library'][] = 'taxonomy/drupal.taxonomy';
-        $form['terms']['#attached']['drupalSettings']['taxonomy'] = [
-          'backStep' => $back_step,
-          'forwardStep' => $forward_step,
-        ];
-      }
-      $form['terms']['#tabledrag'][] = [
-        'action' => 'order',
-        'relationship' => 'sibling',
-        'group' => 'term-weight',
-      ];
-    }*/
+    $form['actions']['#type'] = 'actions';
+    $form['submit'] = array(
+      '#type' => 'submit',
+      '#value' => t('Save'),
+      '#button_type' => 'primary',
+    );
 
-    /*if (($taxonomy_vocabulary->getHierarchy() !== VocabularyInterface::HIERARCHY_MULTIPLE && count($tree) > 1) && $change_weight_access->isAllowed()) {
-      $form['actions'] = ['#type' => 'actions', '#tree' => FALSE];
-      $form['actions']['submit'] = [
-        '#type' => 'submit',
-        '#value' => $this->t('Save'),
-        '#button_type' => 'primary',
-      ];
-      $form['actions']['reset_alphabetical'] = [
-        '#type' => 'submit',
-        '#submit' => ['::submitReset'],
-        '#value' => $this->t('Reset to alphabetical'),
-      ];
-    }
-
-    $form['pager_pager'] = ['#type' => 'pager'];*/
     return $form;
   }
-
-  /**
-   * Form submission handler.
-   *
-   * Rather than using a textfield or weight field, this form depends entirely
-   * upon the order of form elements on the page to determine new weights.
-   *
-   * Because there might be hundreds or thousands of taxonomy terms that need to
-   * be ordered, terms are weighted from 0 to the number of terms in the
-   * vocabulary, rather than the standard -10 to 10 scale. Numbers are sorted
-   * lowest to highest, but are not necessarily sequential. Numbers may be
-   * skipped when a term has children so that reordering is minimal when a child
-   * is added or removed from a term.
-   *
-   * @param array $form
-   *   An associative array containing the structure of the form.
-   * @param \Drupal\Core\Form\FormStateInterface $form_state
-   *   The current state of the form.
-   */
-/*  public function submitForm(array &$form, FormStateInterface $form_state) {
-    // Sort term order based on weight.
-    uasort($form_state->getValue('terms'), ['Drupal\Component\Utility\SortArray', 'sortByWeightElement']);
-
-    $vocabulary = $form_state->get(['taxonomy', 'vocabulary']);
-    // Update the current hierarchy type as we go.
-    $hierarchy = VocabularyInterface::HIERARCHY_DISABLED;
-
-    $changed_terms = [];
-    $tree = $this->storageController->loadTree($vocabulary->id(), 0, NULL, TRUE);
-
-    if (empty($tree)) {
-      return;
-    }
-
-    // Build a list of all terms that need to be updated on previous pages.
-    $weight = 0;
-    $term = $tree[0];
-    while ($term->id() != $form['#first_tid']) {
-      if ($term->parents[0] == 0 && $term->getWeight() != $weight) {
-        $term->setWeight($weight);
-        $changed_terms[$term->id()] = $term;
-      }
-      $weight++;
-      $hierarchy = $term->parents[0] != 0 ? VocabularyInterface::HIERARCHY_SINGLE : $hierarchy;
-      $term = $tree[$weight];
-    }
-
-    // Renumber the current page weights and assign any new parents.
-    $level_weights = [];
-    foreach ($form_state->getValue('terms') as $tid => $values) {
-      if (isset($form['terms'][$tid]['#term'])) {
-        $term = $form['terms'][$tid]['#term'];
-        // Give terms at the root level a weight in sequence with terms on previous pages.
-        if ($values['term']['parent'] == 0 && $term->getWeight() != $weight) {
-          $term->setWeight($weight);
-          $changed_terms[$term->id()] = $term;
-        }
-        // Terms not at the root level can safely start from 0 because they're all on this page.
-        elseif ($values['term']['parent'] > 0) {
-          $level_weights[$values['term']['parent']] = isset($level_weights[$values['term']['parent']]) ? $level_weights[$values['term']['parent']] + 1 : 0;
-          if ($level_weights[$values['term']['parent']] != $term->getWeight()) {
-            $term->setWeight($level_weights[$values['term']['parent']]);
-            $changed_terms[$term->id()] = $term;
-          }
-        }
-        // Update any changed parents.
-        if ($values['term']['parent'] != $term->parents[0]) {
-          $term->parent->target_id = $values['term']['parent'];
-          $changed_terms[$term->id()] = $term;
-        }
-        $hierarchy = $term->parents[0] != 0 ? VocabularyInterface::HIERARCHY_SINGLE : $hierarchy;
-        $weight++;
-      }
-    }
-
-    // Build a list of all terms that need to be updated on following pages.
-    for ($weight; $weight < count($tree); $weight++) {
-      $term = $tree[$weight];
-      if ($term->parents[0] == 0 && $term->getWeight() != $weight) {
-        $term->parent->target_id = $term->parents[0];
-        $term->setWeight($weight);
-        $changed_terms[$term->id()] = $term;
-      }
-      $hierarchy = $term->parents[0] != 0 ? VocabularyInterface::HIERARCHY_SINGLE : $hierarchy;
-    }
-
-    // Save all updated terms.
-    foreach ($changed_terms as $term) {
-      $term->save();
-    }
-
-    // Update the vocabulary hierarchy to flat or single hierarchy.
-    if ($vocabulary->getHierarchy() != $hierarchy) {
-      $vocabulary->setHierarchy($hierarchy);
-      $vocabulary->save();
-    }
-    drupal_set_message($this->t('The configuration options have been saved.'));
-  }*/
 
   /**
    * {@inheritdoc}
    */
   public function submitForm(array &$form, FormStateInterface $form_state) {
-    // Display result.
-    foreach ($form_state->getValues() as $key => $value) {
-      drupal_set_message($key . ': ' . $value);
-    }
-
+    /*foreach ($form_state->getValue($this->entitiesKey) as $id => $value) {
+      if (isset($this->entities[$id]) && $this->entities[$id]->get($this->weightKey) != $value['weight']) {
+        // Save entity only when its weight was changed.
+        $this->entities[$id]->set($this->weightKey, $value['weight']);
+        $this->entities[$id]->save();
+      }
+    }*/
+    drupal_set_message($this->t('The configuration options have been saved.'));
   }
 
   /**

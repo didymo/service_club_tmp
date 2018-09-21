@@ -21,3 +21,4 @@ entity.event_class.section_list:
     _title: 'Event Class Sections'
   requirements:
     _access: 'TRUE'
+

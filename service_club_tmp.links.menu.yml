@@ -13,7 +13,6 @@ entity.question.collection:
   parent: tmp.admin_index
   weight: 98
 
-
 # Event class menu items definition
 entity.event_class.collection:
   title: 'Event class'
