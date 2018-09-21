@@ -1,9 +1,6 @@
-uuid: 0d78e32e-95c6-485b-926f-fe3129d78ca0
-langcode: en
-status: true
-dependencies: {  }
 id: event_class_2_optional
 label: 'Event Class 2 Optional'
 weight: null
 heading: 'Optional:'
 description: "    • Be conducted on-road or in its own venue\r\n    • Involve trusts and authorities when using facilities managed by them\r\n    • Involve State Rail and the State Transit Authority\r\n    • Involve private bus and coach organisations"
+

@@ -1,4 +1,9 @@
 id: ec_5
 label: 'Class 5'
 weight: 4
+sections:
+  - event_class_5_title
+  - event_class_5_includes
+  - event_class_5_optional
+  - event_class_5_documentation
 

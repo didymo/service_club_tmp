@@ -1,9 +1,6 @@
-uuid: 8eed7d9c-acbe-409f-a145-e89fa88766ee
-langcode: en
-status: true
-dependencies: {  }
 id: event_class_5_documentation
 label: 'Event Class 5 Documentation'
 weight: null
 heading: 'Documentation:'
 description: '    • A Traffic Management Plan is not required'
+

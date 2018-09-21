@@ -1,9 +1,6 @@
-uuid: 56df8b93-16c1-4437-afb5-c4c8ff052bf2
-langcode: en
-status: true
-dependencies: {  }
 id: event_class_3_optional
 label: 'Event Class 3 Optional'
 weight: null
 heading: 'Optional:'
 description: "    • May, depending on Local Council Policy, require a simplified TMP\r\n    • Depends on each Council’s Special Events Policy and is not available in all Council areas\r\n    • May require advertising the event’s traffic aspects to the community"
+

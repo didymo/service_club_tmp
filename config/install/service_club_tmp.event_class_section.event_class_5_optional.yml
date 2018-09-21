@@ -1,9 +1,6 @@
-uuid: a8d08ba0-f367-49c9-a3ea-f9c9ab287890
-langcode: en
-status: true
-dependencies: {  }
 id: event_class_5_optional
 label: 'Event Class 5 Optional'
 weight: null
 heading: 'Optional:'
 description: '    • Requires no advertising of the event’s traffic aspects to the community'
+

@@ -1,4 +1,9 @@
 id: ec_2
 label: 'Class 2'
 weight: 2
+sections:
+  - event_class_2_title
+  - event_class_2_includes
+  - event_class_2_optional
+  - event_class_2_documentation
 

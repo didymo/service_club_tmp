@@ -1,9 +1,6 @@
-uuid: 0fe21690-8609-4187-a502-262db744fd47
-langcode: en
-status: true
-dependencies: {  }
 id: event_class_1_includes
 label: 'Event Class 1 Includes'
 weight: null
 heading: 'Includes:'
 description: "    • Impacts major traffic and transport systems\r\n    • Disrupts the non-event community over a wide area\r\n    • Requires the involvement of Police, one or more Councils and the RTA\r\n    • Requires a detailed Transport Management Plan (TMP)\r\n    • Requires advertising the events traffic aspects to a wide audience"
+

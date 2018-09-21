@@ -1,3 +1,9 @@
 id: ec_1
 label: 'Class 1'
 weight: 1
+sections:
+  - event_class_1_title
+  - event_class_1_includes
+  - event_class_1_optional
+  - event_class_1_documentation
+

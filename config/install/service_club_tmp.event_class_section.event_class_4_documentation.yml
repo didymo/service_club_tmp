@@ -1,9 +1,6 @@
-uuid: 745b1a05-62e6-4441-8402-f5aa6bb95693
-langcode: en
-status: true
-dependencies: {  }
 id: event_class_4_documentation
 label: 'Event Class 4 Documentation'
 weight: null
 heading: 'Documentation:'
 description: "    • A Traffic Management Plan is not required\r\n    • An application to the Police Local Area Command Traffic Sergeant"
+
