@@ -14,8 +14,6 @@ use Drupal\user\EntityOwnerInterface;
  */
 interface TrafficManagementPlanInterface extends ContentEntityInterface, RevisionLogInterface, EntityChangedInterface, EntityOwnerInterface {
 
-  // Add get/set methods for your configuration properties here.
-
   /**
    * Gets the Traffic management plan name.
    *

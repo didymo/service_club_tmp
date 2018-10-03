@@ -102,7 +102,7 @@ class EventClass extends ConfigEntityBase implements EventClassInterface {
   public function getEventClassSections() {
     $references = $this->get('sections');
     $sections = array();
-    foreach($references as $sectionId) {
+    foreach ($references as $sectionId) {
       $sections[] = EventClassSection::Load($sectionId);
     }
     return $sections;
@@ -126,6 +126,25 @@ class EventClass extends ConfigEntityBase implements EventClassInterface {
     unset($sections[$sectionId]);
     $this->set('sections', $sections);
     $this->save(TRUE);
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getInformation() {
+    $sections = $this->getEventClassSections();
+    $section_data = array();
+
+    foreach ($sections as $section) {
+      $section_data[] = array($section->getHeading() => $section->getDescription());
+    }
+
+    $information = array(
+      "Title" => $this->label,
+      "Sections" => $section_data,
+    );
+
+    return $information;
   }
 
 }

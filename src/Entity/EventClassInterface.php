@@ -53,4 +53,9 @@ interface EventClassInterface extends ConfigEntityInterface {
    */
   public function deleteSection($sectionId);
 
+  /**
+   * Returns the data of the event class sections packaged as an object.
+   */
+  public function getInformation();
+
 }

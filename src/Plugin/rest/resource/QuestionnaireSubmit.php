@@ -36,7 +36,7 @@ class QuestionnaireSubmit extends ResourceBase {
   protected $currentUser;
 
   /**
-   * Constructs a new QuestionnaireSubmit object.
+   * Constructs a new EventQuestionnaireSubmit object.
    *
    * @param array $configuration
    *   A configuration array containing information about the plugin instance.
@@ -80,9 +80,6 @@ class QuestionnaireSubmit extends ResourceBase {
   /**
    * Responds to POST requests.
    *
-   * @param \Drupal\Core\Entity\EntityInterface $entity
-   *   The entity object.
-   *
    * @return \Drupal\rest\ModifiedResourceResponse
    *   The HTTP response object.
    *
@@ -118,7 +115,7 @@ class QuestionnaireSubmit extends ResourceBase {
       }
     }
 
-    if(!empty($errors)) {
+    if (!empty($errors)) {
       return new ModifiedResourceResponse($errors, 400);
     }
 
@@ -185,7 +182,7 @@ class QuestionnaireSubmit extends ResourceBase {
     ]);
     $questionnaire->save();
 
-    return new ModifiedResourceResponse(["Questionnaire successfully submitted."], 200);
+    return new ModifiedResourceResponse(["Questionnaire successfully submitted." => 1], 200);
   }
 
 }

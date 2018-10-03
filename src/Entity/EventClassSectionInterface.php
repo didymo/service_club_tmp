@@ -23,4 +23,5 @@ interface EventClassSectionInterface extends ConfigEntityInterface {
    * Returns the section's description.
    */
   public function getDescription();
+
 }

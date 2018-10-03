@@ -100,26 +100,26 @@ class CreateTMP extends ResourceBase {
     $south_bound = $json["rightBottom"]["latitude"];
     $west_bound = $json["leftTop"]["longitude"];
 
-    // Check values are valid
+    // Check values are valid.
     $errors = array();
-    if(($north_bound > 90) || ($north_bound < -90)) {
+    if (($north_bound > 90) || ($north_bound < -90)) {
       $errors[] = array("North bound needs to be a latitude between -90 & 90" => "Given: $north_bound");
     }
-    if(($east_bound > 180) || ($east_bound < -180)) {
+    if (($east_bound > 180) || ($east_bound < -180)) {
       $errors[] = array("East bound needs to be a latitude between -180 & 180" => "Given: $east_bound");
     }
-    if(($south_bound > 90) || ($south_bound < -90)) {
+    if (($south_bound > 90) || ($south_bound < -90)) {
       $errors[] = array("South bound needs to be a latitude between -90 & 90" => "Given: $south_bound");
     }
-    if(($west_bound > 180) || ($west_bound < -180)) {
+    if (($west_bound > 180) || ($west_bound < -180)) {
       $errors[] = array("West bound needs to be a latitude between -180 & 180" => "Given: $west_bound");
     }
 
-    if(!empty($errors)) {
+    if (!empty($errors)) {
       return new ModifiedResourceResponse($errors, 400);
     }
 
-    // create new TMP.
+    // Create new TMP.
     $tmp = TrafficManagementPlan::create([
       'type' => 'traffic_management_plan',
       'name' => $name,
