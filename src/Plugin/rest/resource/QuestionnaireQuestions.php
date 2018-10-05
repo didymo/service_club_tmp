@@ -117,6 +117,7 @@ class QuestionnaireQuestions extends ResourceBase {
       ),
     );
 
+    \Drupal::logger("REST:QuestionnaireQuestions")->info("The Questionnaire Quesions have been queried successfully.");
     return (new ResourceResponse($response, 200))->addCacheableDependency($build);
   }
 
