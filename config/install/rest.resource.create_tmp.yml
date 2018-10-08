@@ -16,3 +16,4 @@ configuration:
     - xml
   authentication:
     - basic_auth
+    - jwt_auth
