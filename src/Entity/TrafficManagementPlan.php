@@ -111,7 +111,7 @@ class TrafficManagementPlan extends RevisionableContentEntityBase implements Tra
       }
     }
 
-    // If no revision author has been set explicitly, make the traffic_management_plan owner the
+    // If no revision author has been set explicitly, make the TMP owner the
     // revision author.
     if (!$this->getRevisionUser()) {
       $this->setRevisionUserId($this->getOwnerId());
@@ -191,6 +191,48 @@ class TrafficManagementPlan extends RevisionableContentEntityBase implements Tra
   public function setPublished($published) {
     $this->set('status', $published ? TRUE : FALSE);
     return $this;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getBounds() {
+    return array(
+      "leftTop" => array(
+        "latitude" => (double) $this->get('north_bound')->value,
+        "longitude" => (double) $this->get('west_bound')->value,
+      ),
+      "rightBottom" => array(
+        "latitude" => (double) $this->get('south_bound')->value,
+        "longitude" => (double) $this->get('east_bound')->value,
+      ),
+    );
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function setBounds(array $bounds) {
+    $this->set('north_bound', $bounds["leftTop"]["latitude"]);
+    $this->set('west_bound', $bounds["leftTop"]["longitude"]);
+    $this->set('south_bound', $bounds["rightBottom"]["latitude"]);
+    $this->set('east_bound', $bounds["rightBottom"]["longitude"]);
+    $this->save();
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getObjects() {
+    return $this->get('objects')->value;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function setObjects($objects) {
+    $this->set('objects', "$objects");
+    $this->save();
   }
 
   /**
@@ -354,6 +396,24 @@ class TrafficManagementPlan extends RevisionableContentEntityBase implements Tra
       ->setDisplayOptions('form', [
         'type' => 'float_textfield',
         'weight' => 3,
+      ])
+      ->setDisplayConfigurable('form', TRUE)
+      ->setDisplayConfigurable('view', TRUE)
+      ->setRequired(TRUE);
+
+    $fields['objects'] = BaseFieldDefinition::create('text_long')
+      ->setLabel(t('Objects'))
+      ->setDescription(t('The json string containing the map objects.'))
+      ->setRevisionable(TRUE)
+      ->setDefaultValue('')
+      ->setDisplayOptions('view', [
+        'label' => 'above',
+        'type' => 'textfield',
+        'weight' => 4,
+      ])
+      ->setDisplayOptions('form', [
+        'type' => 'textfield',
+        'weight' => 4,
       ])
       ->setDisplayConfigurable('form', TRUE)
       ->setDisplayConfigurable('view', TRUE)

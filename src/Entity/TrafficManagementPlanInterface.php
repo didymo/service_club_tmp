@@ -66,7 +66,7 @@ interface TrafficManagementPlanInterface extends ContentEntityInterface, Revisio
    * Sets the published status of a Traffic management plan.
    *
    * @param bool $published
-   *   TRUE to set this Traffic management plan to published, FALSE to set it to unpublished.
+   *   TRUE to set this TMP to published, FALSE to set it to unpublished.
    *
    * @return \Drupal\service_club_tmp\Entity\TrafficManagementPlanInterface
    *   The called Traffic management plan entity.
@@ -110,5 +110,37 @@ interface TrafficManagementPlanInterface extends ContentEntityInterface, Revisio
    *   The called Traffic management plan entity.
    */
   public function setRevisionUserId($uid);
+
+  /**
+   * Gets the map bounds of the TMP.
+   *
+   * @return string[]
+   *   An array of the TMP map bounds.
+   */
+  public function getBounds();
+
+  /**
+   * Sets the map bounds of the TMP.
+   *
+   * @param string[] $bounds
+   *   An array containing the new bounds of the TMP.
+   */
+  public function setBounds(array $bounds);
+
+  /**
+   * Gets the json of the objects placed of the TMP.
+   *
+   * @return string
+   *   The json of the objects placed on the TMP.
+   */
+  public function getObjects();
+
+  /**
+   * Gets the json of the objects placed of the TMP.
+   *
+   * @param string $objects
+   *   The json of the objects placed on the TMP.
+   */
+  public function setObjects($objects);
 
 }
